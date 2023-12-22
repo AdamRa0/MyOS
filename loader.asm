@@ -1,4 +1,5 @@
 extern KernelMain
+extern CallConstructors
 
 section .data
     MAGIC_NUM equ 0x1badb002
@@ -10,6 +11,7 @@ section .text
 
 loader:
     MOV esp, kernel_stack_pointer
+    CALL CallConstructors
     PUSH eax
     PUSH ebx
     CALL KernelMain

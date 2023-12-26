@@ -1,10 +1,15 @@
 extern KernelMain
 extern CallConstructors
 
-section .data
-    MAGIC_NUM equ 0x1badb002
-    FLAGS equ (1<<0) | (1 << 1)
-    CHECKSUM dd -(MAGIC_NUM + FLAGS)
+MAGIC_NUM equ 0x1badb002
+FLAGS equ (1<<0) | (1 << 1)
+CHECKSUM equ -(MAGIC_NUM + FLAGS)
+
+section .multiboot
+align 4
+    dd MAGIC_NUM
+    dd FLAGS
+    dd CHECKSUM
 
 section .text
     global loader

@@ -9,7 +9,7 @@ void cout(char* str)
 
     for (int i = 0; str[i] != '\0'; i++)
     {
-        video_memory[i] = str[i];
+        video_memory[i] = (video_memory[i] & 0XFF00) | str[i];
     }
     
 }

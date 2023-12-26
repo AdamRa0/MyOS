@@ -1,3 +1,5 @@
+#include "types.h"
+
 typedef void (*constructor)();
 
 extern "C" constructor start_ctors;
@@ -5,7 +7,7 @@ extern "C" constructor end_ctors;
 
 void cout(char* str)
 {
-    unsigned short* video_memory = (unsigned short*) 0xb8000;
+    static uint16_t* video_memory = (uint16_t*) 0xb8000;
 
     for (int i = 0; str[i] != '\0'; i++)
     {
@@ -14,7 +16,7 @@ void cout(char* str)
     
 }
 
-extern "C" void KernelMain(void *multiboot_structure, unsigned int magic_number)
+extern "C" void KernelMain(void *multiboot_structure, uint32_t magic_number)
 {
 
     cout((char *)"Bare Metal OS");

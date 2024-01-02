@@ -1,4 +1,5 @@
 #include "types.h"
+#include "gdt.h"
 
 typedef void (*constructor)();
 
@@ -20,6 +21,8 @@ extern "C" void KernelMain(void *multiboot_structure, uint32_t magic_number)
 {
 
     cout((char *)"Bare Metal OS");
+
+    GlobalDescriptorTable gdt;
 
     while (true)
         ;

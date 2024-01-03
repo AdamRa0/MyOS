@@ -6,7 +6,7 @@ GlobalDescriptorTable::GlobalDescriptorTable() : null_segment(0, 0, 0), unused_s
     i[0] = (uint32_t)this;
     i[1] = sizeof(GlobalDescriptorTable) << 16;
 
-    asm volatile("lgdt %0" : : "m" ((i[1])));
+    asm volatile("lgdt %0" : : "m"((i[1])));
 }
 
 GlobalDescriptorTable::~GlobalDescriptorTable()
@@ -83,6 +83,7 @@ uint32_t GlobalDescriptorTable::SegmentDescriptor::Limit()
 }
 
 // Uncomment and compile in the event of __stack_chk_fail_local isn't defined error
-// uint32_t __stack_chk_fail_local(){
-//     return 0;
-// }
+uint32_t __stack_chk_fail_local()
+{
+    return 0;
+}

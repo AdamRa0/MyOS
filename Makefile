@@ -27,3 +27,7 @@ os_kernel.iso: os_kernel.bin
 	echo '}' >> iso/boot/grub/grub.cfg
 	grub-mkrescue --output=$@ iso
 	rm -rf iso
+
+.PHONY: clean
+clean:
+	rm -f ${OBJECT_FILES} os_kernel.bin os_kernel.iso

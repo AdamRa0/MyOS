@@ -1,7 +1,7 @@
 # PARAMS = -m32 -fno-use-cxa-atexit -nostdlib -fno builtin -fno-rtti -fno-exceptions -fno-leading-underscore -fno-stack-protector
 PARAMS = -m32 -fno-stack-protector
 NASM_PARAMS = elf32
-OBJECT_FILES = loader.o gdt.o port.o kernel.o
+OBJECT_FILES = loader.o gdt.o port.o interrupts_nasm.o interrupts.o kernel.o
 LD_PARAMS = -melf_i386
 
 %.o: %.cpp

@@ -17,6 +17,12 @@ protected:
         uint16_t offest_hi;
     } __attribute__((packed));
 
+    struct InterruptDescriptorTablePointer
+    {
+        uint16_t size;
+        uint32_t base;
+    } __attribute__((packed));
+
     static GateDescriptor interrupt_descriptor_table[256];
     static void SetInterruptDescriptorTableEntry(
         uint8_t interrupt_number,
@@ -31,7 +37,9 @@ public:
 
     static uint32_t HandleInterrupt(uint8_t interrupt_number, uint32_t stack_pointer);
 
-    static void IgnoreInterruptRequest0x00();
+    void Activate();
+
+    static void IgnoreInterruptRequest();
     static void HandleInterruptRequest0x00();
     static void HandleInterruptRequest0x01();
 };

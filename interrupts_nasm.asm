@@ -1,5 +1,13 @@
 IRQ_BASE equ 0x20
 
+section .data
+    interrupt_number DB 0
+
+section .text
+
+extern _ZN17InterruptsManager15HandleInterruptEhj
+extern _ZN17InterruptsManager22IgnoreInterruptRequestEv
+
 %macro HandleException 1
 global _ZN17InterruptsManager16HandleException%1Ev
 _ZN17InterruptsManager16HandleException%1Ev:
@@ -16,13 +24,6 @@ _ZN17InterruptsManager26HandleInterruptRequest%1Ev:
 
 HandleInterruptRequest 0x00
 HandleInterruptRequest 0x01
-
-section .data
-    interrupt_number DB 0
-
-section .text
-
-extern _ZN17InterruptsManager15HandleInterruptEhj
 
 int_bottom:
 
@@ -46,3 +47,5 @@ int_bottom:
     POPA
 
     IRET    
+
+_ZN17InterruptsManager22IgnoreInterruptRequestEv:
